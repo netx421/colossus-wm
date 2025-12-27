@@ -1,0 +1,10 @@
+/.cache
+/.vscode
+/result
+config.h
+colossus
+colossus.o
+util.o
+*-protocol.h
+*-protocol.c
+*-protocol.o
