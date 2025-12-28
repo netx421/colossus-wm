@@ -1,9 +1,3 @@
-/* ------------------------------------------------------------
-   Monochrome (white/grey/black) + muted red accent
-   GTK3 gtk.css
-   ------------------------------------------------------------ */
-
-/* Base palette */
 @define-color theme_bg_color            #000000;
 @define-color theme_base_color          #0b0b0b;
 @define-color theme_fg_color            #eaeaea;
@@ -21,14 +15,12 @@
 @define-color subtle_fg                 #bdbdbd;
 @define-color dim_fg                    #9a9a9a;
 
-/* Muted red accent (errors/urgent/notifications/selection) */
 @define-color accent_red                #c85a5a;
 @define-color accent_red_dim            #a84a4a;
 @define-color accent_red_glow           rgba(200, 90, 90, 0.25);
 
-/* Selection */
-@define-color theme_selected_bg_color   @accent_red_dim;
-@define-color theme_selected_fg_color   #000000;
+@define-color theme_selected_bg_color   #1a1a1a;
+@define-color theme_selected_fg_color   #ffffff;
 
 @define-color selected_bg_color         @theme_selected_bg_color;
 @define-color selected_fg_color         @theme_selected_fg_color;
@@ -36,16 +28,12 @@
 @define-color view_selected_bg_color    @theme_selected_bg_color;
 @define-color view_selected_fg_color    @theme_selected_fg_color;
 
-/* Links + states */
 @define-color link_color                @accent_red;
-@define-color link_visited_color        @accent_red_dim;
+@define-color link_visited_color        @accent_red;
 @define-color success_color             #bfbfbf;
 @define-color warning_color             @accent_red;
 @define-color error_color               @accent_red;
 
-/* ------------------------------------------------------------
-   Global defaults
-   ------------------------------------------------------------ */
 * {
   font-family: "JetBrainsMono Nerd Font", monospace;
   color: @theme_fg_color;
@@ -54,15 +42,11 @@
   -gtk-icon-shadow: none;
 }
 
-/* Windows */
 window,
 .background {
   background-color: @theme_bg_color;
 }
 
-/* ------------------------------------------------------------
-   Sidebars (Places/Devices etc.)
-   ------------------------------------------------------------ */
 .sidebar {
   background-color: @panel_bg;
   color: @theme_fg_color;
@@ -85,9 +69,6 @@ window,
   border-left: 2px solid @accent_red;
 }
 
-/* ------------------------------------------------------------
-   Lists / TreeViews / Views
-   ------------------------------------------------------------ */
 .view,
 .list,
 .list-row,
@@ -114,21 +95,28 @@ treeview.view:selected:focus,
 selection,
 selection:focus,
 row:selected,
-row:selected:focus {
+row:selected:focus,
+listview:selected,
+listview:selected:focus {
   background-color: @theme_selected_bg_color;
   color: @theme_selected_fg_color;
+  text-shadow: 0 0 6px rgba(255,255,255,0.55), 0 0 14px rgba(255,255,255,0.25);
 }
 
-/* Tree expander arrows */
+*:selected label,
+row:selected label,
+listview:selected label,
+treeview.view:selected label {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255,255,255,0.55), 0 0 14px rgba(255,255,255,0.25);
+}
+
 treeview.view expander,
 expander,
 arrow {
   color: @theme_fg_color;
 }
 
-/* ------------------------------------------------------------
-   Headerbar / Toolbar
-   ------------------------------------------------------------ */
 headerbar,
 .titlebar,
 toolbar {
@@ -142,9 +130,6 @@ headerbar label,
   text-shadow: 0 0 6px rgba(255,255,255,0.06);
 }
 
-/* ------------------------------------------------------------
-   Buttons
-   ------------------------------------------------------------ */
 toolbar button,
 headerbar button,
 button,
@@ -186,7 +171,6 @@ togglebutton:checked:hover {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6);
 }
 
-/* Suggested/default actions: subtle emphasis without color flood */
 button.default,
 button.suggested-action {
   border-color: #4a4a4a;
@@ -202,7 +186,6 @@ button.suggested-action:focus {
   box-shadow: 0 0 0 2px rgba(200, 90, 90, 0.16);
 }
 
-/* Destructive/action: muted red */
 button.destructive-action {
   border-color: @accent_red;
   box-shadow: 0 0 0 2px rgba(200, 90, 90, 0.10);
@@ -214,9 +197,6 @@ button.destructive-action:focus {
   box-shadow: 0 0 0 2px rgba(200, 90, 90, 0.18);
 }
 
-/* ------------------------------------------------------------
-   Entries / Inputs
-   ------------------------------------------------------------ */
 entry,
 searchentry,
 textview,
@@ -243,7 +223,6 @@ combobox:focus {
   box-shadow: 0 0 0 2px rgba(200, 90, 90, 0.18);
 }
 
-/* Remove “blue ring” defaults */
 *:focus,
 *:focus-within,
 button:focus,
@@ -252,9 +231,6 @@ togglebutton:focus {
   box-shadow: none;
 }
 
-/* ------------------------------------------------------------
-   Sliders / Scale
-   ------------------------------------------------------------ */
 scale trough {
   background-color: #101010;
   border: 1px solid @panel_border;
@@ -272,9 +248,6 @@ scale slider:active {
   border: 1px solid @accent_red;
 }
 
-/* ------------------------------------------------------------
-   Scrollbars
-   ------------------------------------------------------------ */
 scrollbar {
   background-color: @panel_bg;
 }
@@ -292,9 +265,6 @@ scrollbar slider:active {
   background-color: @accent_red_dim;
 }
 
-/* ------------------------------------------------------------
-   Dialogs / Popovers / Menus
-   ------------------------------------------------------------ */
 .dialog,
 popover,
 menu,
@@ -317,16 +287,12 @@ menu menuitem:selected,
   color: @theme_selected_fg_color;
 }
 
-/* Menubar */
 menubar,
 .menubar {
   background-color: @panel_bg;
   color: @theme_fg_color;
 }
 
-/* ------------------------------------------------------------
-   Checkboxes / Radios / Switches
-   ------------------------------------------------------------ */
 checkbutton,
 radiobutton {
   color: @theme_fg_color;
@@ -366,7 +332,6 @@ radiobutton:checked indicator {
   min-height: 8px;
 }
 
-/* Switch */
 switch {
   background-color: #1a1a1a;
   border: 1px solid @control_border;
@@ -389,9 +354,6 @@ switch:checked slider {
   border-color: #000000;
 }
 
-/* ------------------------------------------------------------
-   Progress / Levelbar
-   ------------------------------------------------------------ */
 progressbar trough,
 levelbar trough {
   background-color: #101010;
@@ -413,9 +375,6 @@ levelbar block {
   border: 1px solid @panel_border;
 }
 
-/* ------------------------------------------------------------
-   Notebook tabs
-   ------------------------------------------------------------ */
 notebook > header {
   background-color: @panel_bg;
   border-color: @panel_border;
